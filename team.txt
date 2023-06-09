@@ -1,0 +1,4 @@
+[Nome=Gremio, Pontos=4, Vitorias=1, Derrotas=1, Empates=1, Jogos=3]
+[Nome=Cruzeiro, Pontos=14, Vitorias=4, Derrotas=3, Empates=2, Jogos=9]
+[Nome=Vitoria, Pontos=20, Vitorias=6, Derrotas=1, Empates=2, Jogos=9]
+[Nome=Vasco, Pontos=6, Vitorias=1, Derrotas=5, Empates=3, Jogos=9]
