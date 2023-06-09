@@ -29,32 +29,16 @@ public class Time {
         this.pontos = pontos;
     }
 
-    public int getVitorias() {
-        return vitorias;
-    }
-
     public void setVitorias(int vitorias) {
         this.vitorias = vitorias;
-    }
-
-    public int getDerrotas() {
-        return derrotas;
     }
 
     public void setDerrotas(int derrotas) {
         this.derrotas = derrotas;
     }
 
-    public int getEmpates() {
-        return empates;
-    }
-
     public void setEmpates(int empates) {
         this.empates = empates;
-    }
-
-    public int getJogos() {
-        return jogos;
     }
 
     public void setJogos(int jogos) {
@@ -88,13 +72,5 @@ public class Time {
     public String toString() {
         return "[Nome=" + nome + ", Pontos=" + pontos + ", Vitorias=" + vitorias + ", Derrotas=" + derrotas
                 + ", Empates=" + empates + ", Jogos=" + jogos + "]";
-    }
-
-    public void atualizarTime(int pontos, int jogos, int vitorias, int empates, int derrotas) {
-        this.setPontos(pontos);
-        this.setJogos(jogos);
-        this.setVitorias(vitorias);
-        this.setEmpates(empates);
-        this.setDerrotas(derrotas);
     }
 }

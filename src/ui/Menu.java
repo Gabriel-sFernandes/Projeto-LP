@@ -80,7 +80,7 @@ public class Menu implements TimeOperations {
         System.out.print("Digite o nome do time: ");
         String nome = scanner.nextLine();
 
-        if (teamExists(nome)) {
+        if (timeExiste(nome)) {
             try {
                 throw new DuplicateTeamException("Time com o mesmo nome já existe!");
             } catch (DuplicateTeamException e) {
@@ -121,7 +121,6 @@ public class Menu implements TimeOperations {
 
     public void atualizarTime() throws IOException {
         Scanner scanner = new Scanner(System.in);
-
         System.out.println("\nAtualizar informações de um time");
         System.out.print("Nome do time: ");
         String nome = scanner.nextLine();
@@ -192,14 +191,13 @@ public class Menu implements TimeOperations {
         PersistenciaDados.salvarDados(times);
     }
 
-    private boolean teamExists(String nome) {
+    private boolean timeExiste(String nome) {
         for (Time team : times) {
             if (team.getNome().equalsIgnoreCase(nome)) {
                 return true;
             }
         }
         return false;
-
     }
     private void salvarDadosAoSair() {
         PersistenciaDados.salvarDados(times);
