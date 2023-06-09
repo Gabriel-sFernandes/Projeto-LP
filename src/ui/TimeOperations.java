@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public interface TimeOperations {
     void registrarTime() throws DuplicateTeamException;
-    void searchTeam();
+    void pesquisarTime();
     void listarTimes();
     void salvarDados();
     void removerTime();

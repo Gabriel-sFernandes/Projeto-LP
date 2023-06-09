@@ -47,7 +47,7 @@ public class Menu implements TimeOperations {
                         }
                     }
                     case 4 -> listarTimes();
-                    case 5 -> searchTeam();
+                    case 5 -> pesquisarTime();
                     case 6 -> salvarDados();
                     case 0 -> {
                         opcao = false;
@@ -160,7 +160,7 @@ public class Menu implements TimeOperations {
 
 
     @Override
-    public void searchTeam() {
+    public void pesquisarTime() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Digite o nome do time a ser pesquisado: ");
         String nome = scanner.nextLine();
