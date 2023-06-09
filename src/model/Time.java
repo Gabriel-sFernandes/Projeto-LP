@@ -91,10 +91,10 @@ public class Time {
     }
 
     public void atualizarTime(int pontos, int jogos, int vitorias, int empates, int derrotas) {
-        this.pontos = pontos;
-        this.jogos = jogos;
-        this.vitorias = vitorias;
-        this.empates = empates;
-        this.derrotas = derrotas;
+        this.setPontos(pontos);
+        this.setJogos(jogos);
+        this.setVitorias(vitorias);
+        this.setEmpates(empates);
+        this.setDerrotas(derrotas);
     }
 }

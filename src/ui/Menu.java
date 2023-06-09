@@ -7,12 +7,9 @@ import exceptions.InvalidMenuOptionException;
 import model.Time;
 
 import java.io.IOException;
-import java.util.InputMismatchException;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
-public class Menu implements TimeOperations{
+public class Menu implements TimeOperations {
     private final List<Time> times;
 
     public Menu() {
@@ -78,7 +75,7 @@ public class Menu implements TimeOperations{
     }
 
     @Override
-    public void registrarTime() throws DuplicateTeamException{
+    public void registrarTime() throws DuplicateTeamException {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Digite o nome do time: ");
         String nome = scanner.nextLine();
@@ -109,7 +106,7 @@ public class Menu implements TimeOperations{
         System.out.print("Digite o nome do time a ser removido: ");
         String nome = scanner.nextLine();
 
-        for (Iterator<Time> iterator = times.iterator(); iterator.hasNext();) {
+        for (Iterator<Time> iterator = times.iterator(); iterator.hasNext(); ) {
             Time time = iterator.next();
             if (time.getNome().equalsIgnoreCase(nome)) {
                 iterator.remove();
@@ -120,39 +117,44 @@ public class Menu implements TimeOperations{
         System.out.println("Time não encontrado!");
     }
 
-    private static void atualizarTime() throws IOException {
+
+
+    public void atualizarTime() throws IOException {
+        Scanner scanner = new Scanner(System.in);
+
         System.out.println("\nAtualizar informações de um time");
         System.out.print("Nome do time: ");
-        Scanner scanner = new Scanner(System.in);
         String nome = scanner.nextLine();
 
-        PersistenciaDados persistencia = new PersistenciaDados();
-        List<Time> times = persistencia.carregarDados();
-
-        for (int i = 0; i < times.size(); i++) {
-            Time time = times.get(i);
-            if (time.getNome().equals(nome)) {
-                System.out.println("Novos dados:");
-                System.out.print("Pontos: ");
-                int pontos = Integer.parseInt(scanner.nextLine());
-                System.out.print("Jogos: ");
-                int jogos = Integer.parseInt(scanner.nextLine());
-                System.out.print("Vitórias: ");
-                int vitorias = Integer.parseInt(scanner.nextLine());
-                System.out.print("Empates: ");
-                int empates = Integer.parseInt(scanner.nextLine());
-                System.out.print("Derrotas: ");
-                int derrotas = Integer.parseInt(scanner.nextLine());
-
-                time.atualizarTime(pontos, jogos, vitorias, empates, derrotas);
-
-                persistencia.salvarDados(times); // Salvar os dados atualizados
-
-                System.out.println("Informações atualizadas com sucesso!");
-                return;
+        Time timeAtualizar = null;
+        for (Time time : times) {
+            if (time.getNome().equalsIgnoreCase(nome)) {
+                timeAtualizar = time;
+                break;
             }
         }
+        if (timeAtualizar != null) {
+            System.out.print("Novos pontos: ");
+            int pontos = Integer.parseInt(scanner.nextLine());
+            System.out.print("Novos jogos: ");
+            int jogos = Integer.parseInt(scanner.nextLine());
+            System.out.print("Novas vitórias: ");
+            int vitorias = Integer.parseInt(scanner.nextLine());
+            System.out.print("Novos empates: ");
+            int empates = Integer.parseInt(scanner.nextLine());
+            System.out.print("Novas derrotas: ");
+            int derrotas = Integer.parseInt(scanner.nextLine());
 
+            timeAtualizar.setPontos(pontos);
+            timeAtualizar.setJogos(jogos);
+            timeAtualizar.setVitorias(vitorias);
+            timeAtualizar.setEmpates(empates);
+            timeAtualizar.setDerrotas(derrotas);
+
+            System.out.println("Informações atualizadas com sucesso!");
+            PersistenciaDados.salvarDados(times);
+            return;
+        }
         System.out.println("Time não encontrado.");
     }
 
@@ -174,6 +176,12 @@ public class Menu implements TimeOperations{
 
     @Override
     public void listarTimes() {
+
+
+        List<Time> times = PersistenciaDados.carregarDados();
+        times.sort(Comparator.comparingInt(Time::getPontos).reversed());
+
+        System.out.println("Lista de Times:");
         for (Time time : times) {
             System.out.println(time);
         }
